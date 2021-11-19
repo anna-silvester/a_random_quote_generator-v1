@@ -8,10 +8,9 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
- * `quotes` array  Create an array of 6 quote objects and add them to the quotes array.
+ * `quotes` array  Create an array of 7 quote objects and add them to the quotes array.  Citation and year are optional
 ***/
 
-// create quotes array and populate with quotes.  Citation and year are optional
 let quotes = [   
  {
   "quote": "Without music, life would be a mistake.",
@@ -41,8 +40,8 @@ let quotes = [
 {
   "quote": "Whatever you are, be a good one.",
   "source": "Abraham Lincoln",
-  "citation": "1904",
-  "year": "Boston Herald"
+  "citation": "Boston Herald",
+  "year": "1904"
 },
 {
   "quote": "If my life is going to mean anything, I have to live it myself.",
@@ -59,27 +58,49 @@ const numQuotes = quotes.length;
 
 /***
  * `getRandomQuote` function
+ *  Calculates a random number between 0 and array length - 1 and returns the quotes array element at that index.
 ***/
 
-// Calculates a random number and returns the quote object at that index in the quotes array.
-
-function getRandomQuote(numQuotes) {
-   let quoteNumber = Math.floor( Math.random() * numQuotes ) + 1;
-   return quotes[quoteNumber];
+function getRandomQuote() {
+   let quoteNumber = Math.floor( Math.random() * numQuotes ) ;
+      return quotes[quoteNumber];
    // or is this better quotes[getRandomNumber(numQuotes)];
 }
 
-console.log(getRandomQuote());
-
-/***
- * `printQuote` function
-***/
-
+//console.log(getRandomQuote());
 
 
 /***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
+ * `printQuote` function.  Calls the getRandomeQuote function to get a random quote object. 
+ * Constructs a HTML string based on the quote objects attributes and assigns it to quote-box class.
+ * This function has no return value specified.
 ***/
+
+function printQuote() {
+  let quote = getRandomQuote();
+
+  // construct html string for quote and source.  quote and source are mandatory attributes.
+  let html = `<p class="quote">${quote.quote}</p><p class="source">${quote.source}`;
+  
+  // add citation and year to the html variable only if they are populated.
+  if (typeof(quote.citation) !== "undefined") {
+    html += `<span class="citation">${quote.citation}</span>`;
+  }
+  if (typeof(quote.year) !== "undefined") {
+    html += `<span class="year">${quote.year}</span>`;
+  }
+  // add final closing </p> tag.
+  html += `</p>` ;
+
+  // update the quote box with the new quote.
+  document.getElementById('quote-box').innerHTML = html; 
+
+  
+}
+
+/***
+ * click event listener for the print quote button. Calls printQuote when the load-quote button is clicked.
+ ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
