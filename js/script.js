@@ -42,23 +42,34 @@ let quotes = [
   "quote": "Whatever you are, be a good one.",
   "source": "Abraham Lincoln",
   "citation": "1904",
-  "year": 'Boston Herald'
+  "year": "Boston Herald"
 },
 {
   "quote": "If my life is going to mean anything, I have to live it myself.",
-  "source": " Rick Riordan",
+  "source": "Rick Riordan",
   "citation": "The Lightning Thief",
   "year": '2005'
 }
 ]
 
-console.log(quotes);
+//console.log(quotes);
+
+// Save the number of quotes in the quotes array.  This value will remain unchanged while the app is running.
+const numQuotes = quotes.length;
 
 /***
  * `getRandomQuote` function
 ***/
 
+// Calculates a random number and returns the quote object at that index in the quotes array.
 
+function getRandomQuote(numQuotes) {
+   let quoteNumber = Math.floor( Math.random() * numQuotes ) + 1;
+   return quotes[quoteNumber];
+   // or is this better quotes[getRandomNumber(numQuotes)];
+}
+
+console.log(getRandomQuote());
 
 /***
  * `printQuote` function
