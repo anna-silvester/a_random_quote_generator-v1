@@ -87,16 +87,17 @@ function getRandomQuote() {
 }
 
  /*** 
-  * Added for calculating random colours.
-  * Given lower and upper integer values returns a random number between those values
-  * Checks parameters supplied are numbers.
- **/
+  * Given lower and upper integer values returns a random colour object having RGB values between lower and upper.
+  **/
 function getRandomColor(lower,upper) {
-  let colorValue = 0;
-  if (typeof(lower) === 'number' && typeof(upper) === 'number') {
-     colorValue = Math.floor( Math.random() * upper + lower ) ;
-  }
-    return colorValue;
+ 
+  let randomColor = 
+    {
+      "red":  Math.floor( Math.random() * upper + lower ), 
+      "green":  Math.floor( Math.random() * upper + lower ) ,
+      "blue":  Math.floor( Math.random() * upper + lower ) 
+    }
+    return randomColor;
 }
 
 /***
@@ -127,10 +128,13 @@ function printQuote() {
   // update the quote box with the new quote.
   document.getElementById('quote-box').innerHTML = html; 
 
-  // assign a random background colour on each click.  
+  // assign a random background colour on each click or refresh.  
   // Keeping the colour values not too dark not too light.
-  document.body.style.backgroundColor=`rgb(${getRandomColor(50,150)},${getRandomColor(50,150)},${getRandomColor(50,150)})`;
+ let newRGB = getRandomColor(50,150);
+  document.body.style.backgroundColor=`rgb(${newRGB.red},${newRGB.green},${newRGB.blue})`;
+ 
  }
+
 
 /***
  * click event listener for the print quote button. Calls printQuote when the load-quote button is clicked.
