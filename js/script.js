@@ -137,3 +137,5 @@ function printQuote() {
  ***/
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
+// Refreshes the page every 10 seconds with a new quote.
+setInterval(printQuote,10000);
