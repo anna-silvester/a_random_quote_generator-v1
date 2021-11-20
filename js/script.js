@@ -74,21 +74,23 @@ let quotes = [
 
 //console.log(quotes);
 
-// Save the number of quotes in the quotes array.  This value will remain unchanged while the app is running.
+// Save the number of quotes in the quotes array into the variable numQuotes.
 const numQuotes = quotes.length;
 
 /***
  * `getRandomQuote` function
  *  Calculates a random number between 0 and array length - 1 and returns the quotes array element at that index.
 ***/
-
 function getRandomQuote() {
    let quoteNumber = Math.floor( Math.random() * numQuotes ) ;
       return quotes[quoteNumber];
- }
+}
 
- // Given lower and upper integer values returns a random number between those values
- // Checks parameters supplied are numbers.
+ /*** 
+  * Added for calculating random colours.
+  * Given lower and upper integer values returns a random number between those values
+  * Checks parameters supplied are numbers.
+ **/
 function getRandomColor(lower,upper) {
   let colorValue = 0;
   if (typeof(lower) === 'number' && typeof(upper) === 'number') {
@@ -97,16 +99,11 @@ function getRandomColor(lower,upper) {
     return colorValue;
 }
 
-console.log(getRandomColor());
-
-
 /***
  * `printQuote` function.  Calls the getRandomeQuote function to get a random quote object. 
  * Constructs a HTML string based on the quote objects attributes and assigns it to quote-box class.
  * This function has no return value specified.
 ***/
-
-
 function printQuote() {
   let quote = getRandomQuote();
 
@@ -125,7 +122,7 @@ function printQuote() {
     html += `<span class="link"><a href="${quote.link}" style="color:white">Buy the Book</a></span>`;
   }
     // add final closing </p> tag.
-    html += `</p>` ;
+  html += `</p>` ;
     
   // update the quote box with the new quote.
   document.getElementById('quote-box').innerHTML = html; 
@@ -133,12 +130,10 @@ function printQuote() {
   // assign a random background colour on each click.  
   // Keeping the colour values not too dark not too light.
   document.body.style.backgroundColor=`rgb(${getRandomColor(50,150)},${getRandomColor(50,150)},${getRandomColor(50,150)})`;
-  
-}
+ }
 
 /***
  * click event listener for the print quote button. Calls printQuote when the load-quote button is clicked.
  ***/
-
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
